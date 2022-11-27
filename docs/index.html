@@ -46,7 +46,14 @@
   <a href="reference/index.html">Reference</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/vjcitn/sessdiff/">
+    <span class="fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -62,11 +69,39 @@
 <div class="page-header"><h1 id="sessdiff">sessdiff<a class="anchor" aria-label="anchor" href="#sessdiff"></a>
 </h1></div>
 <p>Very simple use of sessioninfo::session_diff to get directly at package/version differences between sessions</p>
+<p>The <code>session_diff()</code> function produces attractive reports based on elementary information about session characteristics. This package extracts one form of elementary information and presents it for further analysis.</p>
+<p>The idea is very simple. Identical sessions cannot be distinguished.</p>
+<pre><code>&gt; si = sessioninfo::session_info()
+
+&gt; sessdiff(si, si)
+$xonly
+character(0)
+
+$yonly
+character(0)</code></pre>
+<p>If one of the sessions has an additional package loaded, we find it:</p>
+<pre><code>&gt; requireNamespace("parody") # unlikely to be loaded
+&gt; si2 = sessioninfo::session_info()
+
+&gt; sessdiff(si, si2)
+$xonly
+character(0)
+
+$yonly
+[1] "parody 1.57.0"</code></pre>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="license">
+    <div class="links">
+<h2 data-toc-skip>Links</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/vjcitn/sessdiff/">Browse source code</a></li>
+<li><a href="https://github.com/vjcitn/sessdiff/issues">Report a bug</a></li>
+</ul>
+</div>
+
+<div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="https://www.r-project.org/Licenses/Artistic-2.0" class="external-link">Artistic-2.0</a></li>

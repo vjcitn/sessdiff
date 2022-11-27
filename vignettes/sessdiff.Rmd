@@ -1,0 +1,54 @@
+---
+title: "Elementary presentation of differences between R sessions"
+author: "Vincent J. Carey, stvjc at channing.harvard.edu"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Elementary presentation of differences between R sessions}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document:
+    highlight: pygments
+    number_sections: yes
+    theme: united
+    toc: yes
+---
+
+```{r setup,echo=FALSE,message=FALSE}
+library(sessdiff)
+```
+
+# sessdiff -- package/version differences between sessions
+
+The `sessioninfo` package manages `sessionInfo()` outputs
+and facilitates programmatic analysis of R sessions.
+
+The `session_diff` function provided there produces fairly
+elaborate reports.  This package has a single function that
+extracts package and version information for
+packages present in one but not another session.
+
+In our first example, we show how identical
+sessions are identified:
+
+```{r doexa}
+library(sessdiff)
+si = sessioninfo::session_info()
+sessdiff(si, si)
+```
+
+In the second example, we show how loading
+a package affects the comparison.
+
+```{r doex2}
+requireNamespace("parody") # unlikely to be loaded
+si2 = sessioninfo::session_info()
+sessdiff(si, si2)
+```
+
+# Further work
+
+External resources like python configurations and numerical library
+versions can be obtained using `sessioninfo` functions.  It will
+likely be useful to have simple reports on differences in
+these aspects of session configuration.
